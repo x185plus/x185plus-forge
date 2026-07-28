@@ -1,0 +1,10 @@
+{
+  "ruleId": "prefer-const",
+  "category": "Quality",
+  "severity": "low",
+  "confidence": "pilot",
+  "pattern": "",
+  "fix": "",
+  "handler": "prefer-const-line",
+  "aliases": ["@typescript-eslint/prefer-const", "quality/prefer-const"]
+}

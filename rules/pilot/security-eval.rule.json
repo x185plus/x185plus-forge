@@ -3,7 +3,8 @@
   "category": "Security",
   "severity": "critical",
   "flags": "g",
+  "confidence": "pilot",
   "pattern": "\\beval\\s*\\(",
   "fix": "/* x185-rule:eval-removed */ void(",
-  "confidence": "pilot"
+  "aliases": ["eval", "no-eval", "security/no-eval"]
 }

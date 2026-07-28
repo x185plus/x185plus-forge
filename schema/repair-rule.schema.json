@@ -2,21 +2,21 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/x185plus/x185plus-forge/schema/repair-rule.schema.json",
   "title": "X185Plus Repair Rule",
-  "description": "A deterministic regex-based repair rule for the X185Plus scanner.",
+  "description": "Deterministic regex/heuristic repair rule for the X185Plus scanner batch producer.",
   "type": "object",
   "required": ["ruleId", "pattern", "fix", "severity", "category"],
   "properties": {
     "ruleId": {
       "type": "string",
-      "description": "Must match detector finding.ruleId exactly (e.g. security/hardcoded-secret)."
+      "description": "Must match detector finding.ruleId exactly."
     },
     "pattern": {
       "type": "string",
-      "description": "JavaScript RegExp source (not /delimited/)."
+      "description": "JS RegExp source (not /delimited/). Empty string for structural/heuristic handler rules."
     },
     "fix": {
       "type": "string",
-      "description": "Replacement string. $1..$9 for capture groups; $U1 = uppercase group 1."
+      "description": "Replacement string. $1..$9 for capture groups; $U1 = uppercase group 1. Empty for handler rules."
     },
     "severity": {
       "type": "string",
@@ -24,7 +24,7 @@
     },
     "category": {
       "type": "string",
-      "description": "Display category (e.g. Security, Quality, Performance)."
+      "description": "Display category (e.g. Security, Quality, Cleanup)."
     },
     "flags": {
       "type": "string",
@@ -36,27 +36,15 @@
       "enum": ["pilot", "local-proven", "local-unproven", "gold"],
       "default": "pilot"
     },
-    "goldRefusalReason": {
-      "type": "string",
-      "description": "Why Gold lane refused this pattern (if applicable)."
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Alternate ruleIds that also resolve to this rule."
     },
-    "mintedFrom": {
+    "handler": {
       "type": "string",
-      "description": "Provenance: scan ID, Gold harvest ref, or github:path."
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "proofGate": {
-      "type": "object",
-      "description": "Local Forge proof gate results.",
-      "properties": {
-        "parse": { "type": "string", "enum": ["PASS", "FAIL", "SKIPPED"] },
-        "typeCheck": { "type": "string", "enum": ["PASS", "FAIL", "SKIPPED"] },
-        "rescan": { "type": "string", "enum": ["PASS", "FAIL", "SKIPPED"] }
-      },
-      "required": ["parse", "typeCheck", "rescan"]
+      "enum": ["unused-import-line", "prefer-const-line"],
+      "description": "Built-in heuristic handler id when pattern is empty."
     }
   },
   "additionalProperties": false

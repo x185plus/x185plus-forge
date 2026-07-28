@@ -1,23 +1,58 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-28T00:00:00Z",
   "rules": [
     {
       "ruleId": "security/hardcoded-secret",
       "path": "rules/pilot/security-hardcoded-secret.rule.json",
-      "status": "active",
+      "status": "pilot",
       "trustLevel": "pilot"
     },
     {
       "ruleId": "security/eval",
       "path": "rules/pilot/security-eval.rule.json",
-      "status": "active",
+      "status": "pilot",
       "trustLevel": "pilot"
     },
     {
       "ruleId": "security/xss-sink",
       "path": "rules/pilot/security-xss-sink.rule.json",
-      "status": "active",
+      "status": "pilot",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "security/new-function",
+      "path": "rules/pilot/security-new-function.rule.json",
+      "status": "pilot",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "eqeqeq",
+      "path": "rules/pilot/eqeqeq.rule.json",
+      "status": "pilot",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "no-var",
+      "path": "rules/pilot/no-var.rule.json",
+      "status": "pilot",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "unused-import",
+      "path": "rules/pilot/unused-import.rule.json",
+      "status": "pilot",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "prefer-const",
+      "path": "rules/pilot/prefer-const.rule.json",
+      "status": "pilot",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "no-debugger",
+      "path": "rules/pilot/no-debugger.rule.json",
+      "status": "pilot",
       "trustLevel": "pilot"
     }
   ]

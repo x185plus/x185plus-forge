@@ -1,0 +1,10 @@
+{
+  "ruleId": "no-var",
+  "category": "Quality",
+  "severity": "low",
+  "flags": "g",
+  "confidence": "pilot",
+  "pattern": "\\bvar\\b",
+  "fix": "let",
+  "aliases": ["quality/no-var"]
+}

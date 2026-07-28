@@ -1,0 +1,10 @@
+{
+  "ruleId": "no-debugger",
+  "category": "Quality",
+  "severity": "medium",
+  "flags": "g",
+  "confidence": "pilot",
+  "pattern": "\\bdebugger\\s*;?",
+  "fix": "/* x185-rule:debugger-removed */",
+  "aliases": ["quality/no-debugger", "debugger"]
+}

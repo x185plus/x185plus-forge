@@ -1,0 +1,10 @@
+{
+  "ruleId": "eqeqeq",
+  "category": "Quality",
+  "severity": "medium",
+  "flags": "g",
+  "confidence": "pilot",
+  "pattern": "([^=!<>])==([^=])",
+  "fix": "$1===$2",
+  "aliases": ["quality/eqeqeq", "no-eq-null"]
+}

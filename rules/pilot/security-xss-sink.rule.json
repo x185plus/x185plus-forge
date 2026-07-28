@@ -3,7 +3,8 @@
   "category": "Security",
   "severity": "high",
   "flags": "g",
+  "confidence": "pilot",
   "pattern": "\\s*dangerouslySetInnerHTML\\s*=\\s*\\{\\{[\\s\\S]*?\\}\\}",
   "fix": "",
-  "confidence": "pilot"
+  "aliases": ["security/react-xss", "react-xss", "react/dangerously-set-inner-html", "xss-sink"]
 }
