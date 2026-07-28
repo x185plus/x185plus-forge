@@ -1,0 +1,9 @@
+{
+  "ruleId": "security/xss-sink",
+  "category": "Security",
+  "severity": "high",
+  "flags": "g",
+  "pattern": "\\s*dangerouslySetInnerHTML\\s*=\\s*\\{\\{[\\s\\S]*?\\}\\}",
+  "fix": "",
+  "confidence": "pilot"
+}

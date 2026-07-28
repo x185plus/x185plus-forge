@@ -1,0 +1,9 @@
+{
+  "ruleId": "security/eval",
+  "category": "Security",
+  "severity": "critical",
+  "flags": "g",
+  "pattern": "\\beval\\s*\\(",
+  "fix": "/* x185-rule:eval-removed */ void(",
+  "confidence": "pilot"
+}
