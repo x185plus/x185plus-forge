@@ -1,6 +1,8 @@
-# x185plus-forge
+# X185Plus Community Repair Rules
 
-Community repair rules for the X185Plus scanner.
+Community-maintained repair rules for the X185Plus scanner. This repository holds deterministic, human-readable rule definitions that describe how a specific finding should be fixed — no proprietary logic, no external services, just pattern/fix pairs and small structural handlers.
+
+MIT licensed. Contributions welcome.
 
 ## Structure
 
@@ -10,7 +12,6 @@ schema/
 rules/
   pilot/                    # built-in pilot pack (9 rules)
   community/                # community-contributed rules
-  gold-derived/             # patterns derived from Gold-certified repairs
 index.json                  # manifest of all rules with status and trust level
 ```
 
@@ -47,11 +48,17 @@ See `schema/repair-rule.schema.json` for the full schema.
 
 ## Trust levels
 
-- **pilot** -- built-in rules shipped with X185Plus
-- **local-proven** -- passed Local Forge proof gate (parse + rescan)
-- **local-unproven** -- stored pattern, never auto-applied
-- **gold** -- Gold-certified (Supabase-backed, not stored here)
+- **pilot** -- built-in rules shipped by default
+- **local-proven** -- passed a local proof gate (parse + rescan) before being trusted
+- **local-unproven** -- a stored pattern that has not been auto-applied yet
+- **governed** -- passed a stricter review/governance process before being trusted
 
-## Usage
+## Contributing
 
-The X185Plus Detectors workspace and batch producer load rules from this repo via the GitHub API. Rules are injected through `injectRepairRules()` in `src/lib/repair/rules/ruleIndex.ts`.
+1. Add a new `.rule.json` file under `rules/community/` that validates against `schema/repair-rule.schema.json`.
+2. Add an entry for it in `index.json`.
+3. Open a pull request describing the finding the rule fixes and why the fix is safe.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
