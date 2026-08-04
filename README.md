@@ -1,6 +1,6 @@
 # X185Plus Community Repair Rules
 
-Community-maintained repair rules for the X185Plus scanner. This repository holds deterministic, human-readable rule definitions that describe how a specific finding should be fixed — no proprietary logic, no external services, just pattern/fix pairs and small structural handlers.
+Community-maintained repair rules for the X185Plus scanner. This repository holds deterministic, human-readable rule definitions that describe how a specific finding should be fixed no proprietary logic, no external services, just pattern/fix pairs and small structural handlers.
 
 MIT licensed. Contributions welcome.
 
