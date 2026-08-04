@@ -72,6 +72,24 @@
       "path": "rules/community/no-irregular-whitespace.rule.json",
       "status": "active",
       "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "unicode-bom",
+      "path": "rules/community/unicode-bom.rule.json",
+      "status": "active",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "linebreak-style",
+      "path": "rules/community/linebreak-style.rule.json",
+      "status": "active",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "eol-last",
+      "path": "rules/community/eol-last.rule.json",
+      "status": "active",
+      "trustLevel": "pilot"
     }
   ]
 }

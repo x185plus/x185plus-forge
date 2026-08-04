@@ -13,7 +13,10 @@ Every rule under `rules/community/` that was derived from an external source is 
 <!-- COMMUNITY-RULE-ATTRIBUTION:START -->
 | Rule | Source | License | Notes |
 |------|--------|---------|-------|
+| `eol-last` | [ESLint core `eol-last`](https://eslint.org/docs/latest/rules/eol-last) | MIT License -- Copyright OpenJS Foundation and other contributors, <www.openjsfoundation.org> | Simplified regex reimplementation. Upstream: "Require or disallow newline at the end of files" |
+| `linebreak-style` | [ESLint core `linebreak-style`](https://eslint.org/docs/latest/rules/linebreak-style) | MIT License -- Copyright OpenJS Foundation and other contributors, <www.openjsfoundation.org> | Simplified regex reimplementation. Upstream: "Enforce consistent linebreak style" |
 | `no-irregular-whitespace` | [ESLint core `no-irregular-whitespace`](https://eslint.org/docs/latest/rules/no-irregular-whitespace) | MIT License -- Copyright OpenJS Foundation and other contributors, <www.openjsfoundation.org> | Simplified regex reimplementation. Upstream: "Disallow irregular whitespace" |
 | `no-multiple-empty-lines` | [ESLint core `no-multiple-empty-lines`](https://eslint.org/docs/latest/rules/no-multiple-empty-lines) | MIT License -- Copyright OpenJS Foundation and other contributors, <www.openjsfoundation.org> | Simplified regex reimplementation. Upstream: "Disallow multiple empty lines" |
 | `no-trailing-spaces` | [ESLint core `no-trailing-spaces`](https://eslint.org/docs/latest/rules/no-trailing-spaces) | MIT License -- Copyright OpenJS Foundation and other contributors, <www.openjsfoundation.org> | Simplified regex reimplementation. Upstream: "Disallow trailing whitespace at the end of lines" |
+| `unicode-bom` | [ESLint core `unicode-bom`](https://eslint.org/docs/latest/rules/unicode-bom) | MIT License -- Copyright OpenJS Foundation and other contributors, <www.openjsfoundation.org> | Simplified regex reimplementation. Upstream: "Require or disallow Unicode byte order mark (BOM)" |
 <!-- COMMUNITY-RULE-ATTRIBUTION:END -->

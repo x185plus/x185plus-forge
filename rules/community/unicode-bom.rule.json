@@ -1,0 +1,12 @@
+{
+  "ruleId": "unicode-bom",
+  "pattern": "^\\ufeff",
+  "fix": "",
+  "severity": "info",
+  "category": "Style",
+  "flags": "",
+  "confidence": "pilot",
+  "aliases": [
+    "style/unicode-bom"
+  ]
+}

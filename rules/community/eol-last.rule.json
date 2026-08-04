@@ -1,0 +1,12 @@
+{
+  "ruleId": "eol-last",
+  "pattern": "([^\\n])$",
+  "fix": "$1\n",
+  "severity": "info",
+  "category": "Style",
+  "flags": "",
+  "confidence": "pilot",
+  "aliases": [
+    "style/eol-last"
+  ]
+}

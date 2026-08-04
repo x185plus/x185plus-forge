@@ -1,0 +1,12 @@
+{
+  "ruleId": "linebreak-style",
+  "pattern": "\\r\\n",
+  "fix": "\n",
+  "severity": "info",
+  "category": "Style",
+  "flags": "g",
+  "confidence": "pilot",
+  "aliases": [
+    "style/linebreak-style"
+  ]
+}

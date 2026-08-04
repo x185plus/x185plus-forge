@@ -57,11 +57,47 @@ const VETTED_RULES = [
     severity: "low",
     category: "Security",
     flags: "g",
-    // Non-standard whitespace characters (excludes normal space/tab/newline
-    // and line/paragraph separators, which ESLint treats as line terminators).
-    pattern: "[\\f\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]",
+    // Non-standard whitespace characters (excludes normal space/tab/newline,
+    // line/paragraph separators (ESLint treats those as line terminators),
+    // and the byte-order mark -- a leading BOM is handled precisely by
+    // the unicode-bom rule below instead).
+    pattern: "[\\f\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000]",
     fix: " ",
     aliases: ["security/no-irregular-whitespace"]
+  },
+  {
+    ruleId: "unicode-bom",
+    eslintRuleFile: "unicode-bom.js",
+    severity: "info",
+    category: "Style",
+    flags: "",
+    // A BOM is only meaningful as the very first character of a file.
+    pattern: "^\\ufeff",
+    fix: "",
+    aliases: ["style/unicode-bom"]
+  },
+  {
+    ruleId: "linebreak-style",
+    eslintRuleFile: "linebreak-style.js",
+    severity: "info",
+    category: "Style",
+    flags: "g",
+    // Normalize CRLF to LF (ESLint default "unix" option).
+    pattern: "\\r\\n",
+    fix: "\n",
+    aliases: ["style/linebreak-style"]
+  },
+  {
+    ruleId: "eol-last",
+    eslintRuleFile: "eol-last.js",
+    severity: "info",
+    category: "Style",
+    flags: "",
+    // File must end with exactly one trailing newline. Only fires when the
+    // last character isn't already a newline -- never adds a second one.
+    pattern: "([^\\n])$",
+    fix: "$1\n",
+    aliases: ["style/eol-last"]
   }
 ];
 
