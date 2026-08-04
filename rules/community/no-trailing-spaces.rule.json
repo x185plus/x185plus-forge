@@ -1,0 +1,12 @@
+{
+  "ruleId": "no-trailing-spaces",
+  "pattern": "[ \\t]+$",
+  "fix": "",
+  "severity": "info",
+  "category": "Style",
+  "flags": "gm",
+  "confidence": "pilot",
+  "aliases": [
+    "style/no-trailing-spaces"
+  ]
+}

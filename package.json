@@ -1,0 +1,11 @@
+{
+  "name": "x185plus-forge",
+  "version": "1.0.0",
+  "description": "Community repair rules for the X185Plus scanner.",
+  "private": true,
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "harvest": "node scripts/harvest-community-rules.js"
+  }
+}

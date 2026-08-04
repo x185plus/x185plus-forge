@@ -1,0 +1,12 @@
+{
+  "ruleId": "no-multiple-empty-lines",
+  "pattern": "\\n{4,}",
+  "fix": "\n\n\n",
+  "severity": "info",
+  "category": "Style",
+  "flags": "g",
+  "confidence": "pilot",
+  "aliases": [
+    "style/no-multiple-empty-lines"
+  ]
+}

@@ -54,6 +54,24 @@
       "path": "rules/pilot/no-debugger.rule.json",
       "status": "pilot",
       "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "no-trailing-spaces",
+      "path": "rules/community/no-trailing-spaces.rule.json",
+      "status": "active",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "no-multiple-empty-lines",
+      "path": "rules/community/no-multiple-empty-lines.rule.json",
+      "status": "active",
+      "trustLevel": "pilot"
+    },
+    {
+      "ruleId": "no-irregular-whitespace",
+      "path": "rules/community/no-irregular-whitespace.rule.json",
+      "status": "active",
+      "trustLevel": "pilot"
     }
   ]
 }
