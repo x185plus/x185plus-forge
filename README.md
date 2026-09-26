@@ -62,3 +62,8 @@ See `schema/repair-rule.schema.json` for the full schema.
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+
+## License Scope Clarification
+
+The MIT License in this repository applies **ONLY** to the contents of this community forge repository (the deterministic local patterns, scripts, and rules). It does **NOT** apply to the main X185Plus application, its source code, or any proprietary logic. The main X185Plus application is proprietary and all rights are reserved.
