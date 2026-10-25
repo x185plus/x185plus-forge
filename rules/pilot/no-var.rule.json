@@ -6,5 +6,13 @@
   "confidence": "pilot",
   "pattern": "\\bvar\\b",
   "fix": "let",
-  "aliases": ["quality/no-var"]
+  "aliases": [
+    "quality/no-var"
+  ],
+  "description": "Require let or const instead of var to enforce block scoping and prevent variable hoisting bugs.",
+  "tags": [
+    "quality",
+    "es6",
+    "scoping"
+  ]
 }

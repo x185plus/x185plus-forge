@@ -1,64 +1,94 @@
-# X185Plus Community Repair Rules
+# X185Plus Forge — Public Governed Repair Rule Index
 
-Community-maintained repair rules for the X185Plus scanner. This repository holds deterministic, human-readable rule definitions that describe how a specific finding should be fixed no proprietary logic, no external services, just pattern/fix pairs and small structural handlers.
+[![Forge Public Rule CI](https://github.com/x185plus/x185plus-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/x185plus/x185plus-forge/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-MIT licensed. Contributions welcome.
+Public governed repair rule index for the X185Plus pilot pack, community-proven patterns, and deterministic AST rules loaded directly by the X185Plus batch repair engine.
 
-## Structure
+---
+
+## 🛡️ The Invariant: Deterministic by Design
+
+> ### ⚠️ Universal System Law
+> **You cannot apply a non-deterministic repair by design. We proved it.**
+
+In modern software development, guessing is dangerous. While generative AI models can suggest candidate patches or explain syntax anomalies in sandbox environments, **probabilistic AI output is never permitted to autonomously mutate code in production**. 
+
+In X185Plus, every applied repair is grounded in **mathematical AST determinism**:
+1. **We mint our own recipes from AI and the engine:** Candidate patterns synthesized by AI assistants or discovered by the analysis engine are distilled into strict, deterministic AST transformation recipes.
+2. **Deterministic Replay:** A recipe must take an exact syntax pattern and produce an identical, byte-reproducible AST replacement every single time.
+3. **Fail-Closed Verification:** If a proposed repair cannot be proven deterministically through AST parse gates and syntax postconditions, the system refuses to apply it.
+
+---
+
+## 📦 What is X185Plus Forge?
+
+`x185plus-forge` is the **open-source community hub** for sharing, validating, and distributing governed repair rules under the permissive [MIT License](LICENSE).
+
+It provides:
+* **Zero-Secret Public Registry:** An open catalog of vetted AST repair patterns accessible without private keys or tokens.
+* **Direct IDE Integration:** The X185Plus Mini IDE and batch runner load rules directly from this repository via GitHub raw endpoints.
+* **Offline Sandbox Safety:** All recipes in this index can execute offline in local developer environments with complete blast-radius containment.
+
+---
+
+## 🔄 The 3-Step Human-Controlled Repair Flow
 
 ```
-schema/
-  repair-rule.schema.json   # formal JSON schema for .rule.json files
-rules/
-  pilot/                    # built-in pilot pack (9 rules)
-  community/                # community-contributed rules
-index.json                  # manifest of all rules with status and trust level
+   [1. SCAN]                   [2. REPAIR]                [3. PROVE & APPLY]
+Inspect findings with       Review the deterministic    Evaluate AST proof gates &
+deterministic detectors   →   proposed AST recipe     →  explicitly authorise application
 ```
 
-## Rule format
+1. **Scan:** Detect potential syntax anomalies, type-coercion bugs, or security patterns.
+2. **Repair:** Load the matching recipe minted from AI and the engine. Inspect the side-by-side Monaco diff.
+3. **Prove & Apply:** Review the verification checks. The human developer retains final authority to apply the change.
 
-Each `.rule.json` file contains a single repair rule:
+---
+
+## 🛠️ Community Rule Structure
+
+Rules in this repository are defined as clean JSON documents:
 
 ```json
 {
-  "ruleId": "eqeqeq",
-  "pattern": "([^=!<>])==([^=])",
-  "fix": "$1===$2",
+  "ruleId": "quality/loose-equality",
+  "description": "Replace non-strict equality (==) with strict equality (===) to prevent unexpected type coercion.",
+  "pattern": "([a-zA-Z0-9_$.]+)\\s*==\\s*([a-zA-Z0-9_$.]+)",
+  "fix": "$1 === $2",
   "severity": "medium",
-  "category": "Quality",
-  "flags": "g",
   "confidence": "pilot",
-  "aliases": ["quality/eqeqeq", "no-eq-null"]
+  "aliases": ["eqeqeq", "quality-loose-equality"],
+  "tags": ["type-safety", "equality", "clean-code"]
 }
 ```
 
-Handler rules (no regex) use `handler` + empty `pattern`/`fix`:
+### Rule Fields:
+* **`ruleId`**: Canonical namespaced identifier (e.g. `quality/loose-equality`).
+* **`description`**: Clear rationale explaining why the change is necessary.
+* **`pattern`**: Deterministic regular expression or AST selector matching the target code.
+* **`fix`**: Deterministic replacement string.
+* **`handler`**: Optional built-in AST handler (e.g. `unused-import-line`).
+* **`severity`**: `critical` | `high` | `medium` | `low` | `info`
+* **`confidence`**: `pilot` | `local-proven` | `local-unproven` | `gold`
 
-```json
-{
-  "ruleId": "unused-import",
-  "pattern": "",
-  "fix": "",
-  "handler": "unused-import-line",
-  "confidence": "pilot"
-}
-```
+---
 
-See `schema/repair-rule.schema.json` for the full schema.
+## 🚀 Contributing Rules
 
-## Trust levels
+We welcome community contributions! To add a new rule:
+1. Fork this repository.
+2. Create your rule under `rules/<category>/<rule-name>.rule.json`.
+3. Add your rule entry to `index.json`.
+4. Run the local validator:
+   ```bash
+   npm test
+   ```
+5. Submit a Pull Request. The public GitHub Action will automatically verify schema validity and AST determinism.
 
-- **pilot** -- built-in rules shipped by default
-- **local-proven** -- passed a local proof gate (parse + rescan) before being trusted
-- **local-unproven** -- a stored pattern that has not been auto-applied yet
-- **governed** -- passed a stricter review/governance process before being trusted
+---
 
-## Contributing
+## 📄 License
 
-1. Add a new `.rule.json` file under `rules/community/` that validates against `schema/repair-rule.schema.json`.
-2. Add an entry for it in `index.json`.
-3. Open a pull request describing the finding the rule fixes and why the fix is safe.
+This repository is licensed under the [MIT License](LICENSE).
 
-## License
-
-MIT — see [LICENSE](LICENSE).

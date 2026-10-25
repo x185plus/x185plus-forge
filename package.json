@@ -1,11 +1,22 @@
 {
-  "name": "x185plus-forge",
+  "name": "@x185plus/forge",
   "version": "1.0.0",
-  "description": "Community repair rules for the X185Plus scanner.",
-  "private": true,
-  "license": "MIT",
-  "type": "commonjs",
+  "description": "Governed repair rule index for X185Plus pilot pack and community-proven deterministic AST patterns.",
+  "type": "module",
+  "main": "index.json",
   "scripts": {
-    "harvest": "node scripts/harvest-community-rules.js"
-  }
+    "test": "node scripts/validate-rules.mjs && node scripts/test-rules.mjs",
+    "test:validate": "node scripts/validate-rules.mjs",
+    "test:rules": "node scripts/test-rules.mjs",
+    "build:data": "node scripts/build-site-data.mjs"
+  },
+  "keywords": [
+    "ast",
+    "repair-rules",
+    "governance",
+    "deterministic",
+    "x185plus"
+  ],
+  "author": "X185Plus Contributors",
+  "license": "MIT"
 }

@@ -8,5 +8,11 @@
   "confidence": "pilot",
   "aliases": [
     "style/eol-last"
+  ],
+  "description": "Enforce at least one newline character at the end of non-empty files for POSIX compatibility.",
+  "tags": [
+    "style",
+    "formatting",
+    "posix"
   ]
 }

@@ -8,5 +8,11 @@
   "confidence": "pilot",
   "aliases": [
     "style/unicode-bom"
+  ],
+  "description": "Disallow Unicode byte order mark (BOM) at the beginning of UTF-8 files.",
+  "tags": [
+    "style",
+    "encoding",
+    "unicode"
   ]
 }

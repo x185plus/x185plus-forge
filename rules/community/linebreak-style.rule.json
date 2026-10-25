@@ -8,5 +8,11 @@
   "confidence": "pilot",
   "aliases": [
     "style/linebreak-style"
+  ],
+  "description": "Enforce consistent Unix linebreaks (\n) and strip carriage return characters (\r\n).",
+  "tags": [
+    "style",
+    "formatting",
+    "linebreaks"
   ]
 }

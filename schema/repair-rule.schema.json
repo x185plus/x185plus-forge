@@ -1,50 +1,48 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/x185plus/x185plus-forge/schema/repair-rule.schema.json",
-  "title": "X185Plus Repair Rule",
-  "description": "Deterministic regex/heuristic repair rule for the X185Plus scanner batch producer.",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "X185PlusForgeRepairRule",
   "type": "object",
-  "required": ["ruleId", "pattern", "fix", "severity", "category"],
+  "required": ["ruleId", "description", "severity", "confidence"],
   "properties": {
     "ruleId": {
       "type": "string",
-      "description": "Must match detector finding.ruleId exactly."
+      "pattern": "^[a-z0-9-]+(/[a-z0-9-]+)?$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 5
     },
     "pattern": {
-      "type": "string",
-      "description": "JS RegExp source (not /delimited/). Empty string for structural/heuristic handler rules."
+      "type": "string"
     },
     "fix": {
+      "type": "string"
+    },
+    "handler": {
       "type": "string",
-      "description": "Replacement string. $1..$9 for capture groups; $U1 = uppercase group 1. Empty for handler rules."
+      "enum": ["unused-import-line", "prefer-const-line"]
     },
     "severity": {
       "type": "string",
       "enum": ["critical", "high", "medium", "low", "info"]
     },
-    "category": {
-      "type": "string",
-      "description": "Display category (e.g. Security, Quality, Cleanup)."
-    },
-    "flags": {
-      "type": "string",
-      "description": "Regex flags. Default 'g'.",
-      "default": "g"
-    },
     "confidence": {
       "type": "string",
-      "enum": ["pilot", "local-proven", "local-unproven", "governed"],
-      "default": "pilot"
+      "enum": ["local-proven", "local-unproven", "pilot", "gold"]
     },
     "aliases": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Alternate ruleIds that also resolve to this rule."
+      "items": { "type": "string" }
     },
-    "handler": {
-      "type": "string",
-      "enum": ["unused-import-line", "prefer-const-line"],
-      "description": "Built-in heuristic handler id when pattern is empty."
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "category": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "string"
     }
   },
   "additionalProperties": false

@@ -8,5 +8,11 @@
   "confidence": "pilot",
   "aliases": [
     "style/no-trailing-spaces"
+  ],
+  "description": "Disallow trailing whitespace at the ends of lines to maintain clean git diffs.",
+  "tags": [
+    "style",
+    "whitespace",
+    "git-hygiene"
   ]
 }

@@ -8,5 +8,11 @@
   "confidence": "pilot",
   "aliases": [
     "security/no-irregular-whitespace"
+  ],
+  "description": "Disallow irregular whitespace characters (zero-width spaces, non-breaking spaces) that cause syntax issues.",
+  "tags": [
+    "style",
+    "whitespace",
+    "clean-code"
   ]
 }

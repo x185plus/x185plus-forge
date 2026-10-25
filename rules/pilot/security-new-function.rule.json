@@ -6,5 +6,14 @@
   "confidence": "pilot",
   "pattern": "\\bnew\\s+Function\\s*\\(",
   "fix": "/* x185-rule:new-function-removed */ void(",
-  "aliases": ["no-new-func", "security/function-constructor"]
+  "aliases": [
+    "no-new-func",
+    "security/function-constructor"
+  ],
+  "description": "Disallow Function constructor (new Function) which compiles strings into executable code at runtime.",
+  "tags": [
+    "security",
+    "injection",
+    "eval"
+  ]
 }

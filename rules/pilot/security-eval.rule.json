@@ -6,5 +6,15 @@
   "confidence": "pilot",
   "pattern": "\\beval\\s*\\(",
   "fix": "/* x185-rule:eval-removed */ void(",
-  "aliases": ["eval", "no-eval", "security/no-eval"]
+  "aliases": [
+    "eval",
+    "no-eval",
+    "security/no-eval"
+  ],
+  "description": "Disallow the use of eval() which executes arbitrary strings as code, opening code injection vulnerabilities.",
+  "tags": [
+    "security",
+    "injection",
+    "cwe-95"
+  ]
 }

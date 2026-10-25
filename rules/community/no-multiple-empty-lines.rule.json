@@ -8,5 +8,11 @@
   "confidence": "pilot",
   "aliases": [
     "style/no-multiple-empty-lines"
+  ],
+  "description": "Disallow four or more consecutive blank lines to maintain clean, readable formatting.",
+  "tags": [
+    "style",
+    "whitespace",
+    "formatting"
   ]
 }

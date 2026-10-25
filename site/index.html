@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X185Plus Forge — Deterministic Community Rule Catalog</title>
+  <meta name="description" content="Community-proven, mathematically deterministic repair rules and AST transformations for X185Plus. Zero AI hallucinations, zero secrets, 100% reproducible.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Top Global Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-badge">
+        <span class="brand-icon">🛡️</span>
+        <div class="brand-meta">
+          <h1 class="brand-title">X185Plus Forge</h1>
+          <span class="brand-sub">Deterministic AST & Pattern Catalog</span>
+        </div>
+      </div>
+      <span class="badge version-badge">v1.0 Community</span>
+    </div>
+
+    <!-- Live Telemetry Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-total-rules">15</span>
+        <span class="stat-label">Rules</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value stat-success" id="stat-tests">44/44</span>
+        <span class="stat-label">Tests Passing</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value stat-accent">100%</span>
+        <span class="stat-label">Deterministic Gate</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="https://github.com/x185plus/x185plus-forge" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" id="btn-github-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub
+      </a>
+      <button class="btn btn-primary btn-sm" id="btn-download-catalog">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download Catalog
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs" role="tablist">
+    <button class="tab-button active" role="tab" data-tab="catalog" id="tab-btn-catalog">
+      <span>Rule Catalog</span>
+      <span class="tab-badge" id="tab-count-catalog">15</span>
+    </button>
+    <button class="tab-button" role="tab" data-tab="compare" id="tab-btn-compare">
+      <span>Compare</span>
+      <span class="tab-badge" id="tab-count-compare">0</span>
+    </button>
+    <button class="tab-button" role="tab" data-tab="reference" id="tab-btn-reference">
+      <span>Operator Reference</span>
+    </button>
+    <button class="tab-button" role="tab" data-tab="governance" id="tab-btn-governance">
+      <span>Governance & CI Gate</span>
+      <span class="tab-badge tab-badge-success">Green</span>
+    </button>
+  </nav>
+
+  <!-- Main View Container -->
+  <main class="main-content">
+    <!-- TAB 1: CATALOG -->
+    <section class="tab-pane active" id="pane-catalog">
+      <!-- Search & Filter Bar -->
+      <div class="filter-bar">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="search-input" placeholder="Search rules by ID, description, CWE, or tags..." autocomplete="off">
+          <button class="clear-search-btn" id="btn-clear-search" title="Clear search">✕</button>
+        </div>
+
+        <div class="filter-controls">
+          <div class="category-chips" id="category-filter-chips">
+            <button class="chip active" data-category="all">All</button>
+            <button class="chip" data-category="Security">Security</button>
+            <button class="chip" data-category="Quality">Quality</button>
+            <button class="chip" data-category="Style">Style</button>
+            <button class="chip" data-category="Cleanup">Cleanup</button>
+          </div>
+
+          <div class="select-filters">
+            <select id="severity-filter" class="form-select" aria-label="Filter by severity">
+              <option value="all">All Severities</option>
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+              <option value="info">Info</option>
+            </select>
+
+            <select id="perf-filter" class="form-select" aria-label="Filter by performance">
+              <option value="all">All Perf Classes</option>
+              <option value="cheap">Cheap (Fast Regex)</option>
+              <option value="moderate">Moderate (AST/State)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Counter -->
+      <div class="catalog-status">
+        <span id="results-count-text">Showing 15 rules</span>
+        <button class="btn btn-ghost btn-xs" id="btn-reset-filters" style="display: none;">Reset Filters</button>
+      </div>
+
+      <!-- Rules Cards Grid -->
+      <div class="rules-grid" id="rules-grid">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 2: COMPARE -->
+    <section class="tab-pane" id="pane-compare">
+      <div class="compare-header">
+        <div>
+          <h2 class="section-title">Rule Comparison Matrix</h2>
+          <p class="section-desc">Select 2 to 4 rules in the catalog to inspect differences in pattern scope, deterministic fixes, and performance.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-clear-compare">Clear Selection</button>
+      </div>
+
+      <div id="compare-container">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 3: OPERATOR REFERENCE -->
+    <section class="tab-pane" id="pane-reference">
+      <div class="reference-header">
+        <h2 class="section-title">Deterministic AST & Pattern DSL Reference</h2>
+        <p class="section-desc">
+          X185Plus Forge community rules use deterministic syntax engines. 
+          <strong>"You cannot apply a non-deterministic repair by design. We proved it."</strong>
+        </p>
+      </div>
+
+      <div class="reference-cards-grid">
+        <div class="card ref-card">
+          <div class="ref-card-header">
+            <span class="ref-icon">⚙️</span>
+            <h3>Rule Fields & Syntax</h3>
+          </div>
+          <table class="ref-table">
+            <thead>
+              <tr><th>Field</th><th>Syntax</th><th>Behavior</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>pattern</code></td>
+                <td>PCRE2 Regex</td>
+                <td>Anchored matching of tokens, operators, and code expressions.</td>
+              </tr>
+              <tr>
+                <td><code>fix</code></td>
+                <td><code>$1, $2, $U1</code></td>
+                <td>Deterministic rewrite replacement. <code>$U1</code> converts identifier to uppercase for ENV vars.</td>
+              </tr>
+              <tr>
+                <td><code>handler</code></td>
+                <td><code>prefer-const-line</code>, <code>unused-import-line</code></td>
+                <td>AST scope handlers for multi-token reassignments and import pruning.</td>
+              </tr>
+              <tr>
+                <td><code>confidence</code></td>
+                <td><code>pilot</code>, <code>local-proven</code>, <code>gold</code></td>
+                <td>Trust tier. Gold rules are mathematically verified with DSSE cryptographic proof.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card ref-card">
+          <div class="ref-card-header">
+            <span class="ref-icon">⚖️</span>
+            <h3>Deterministic Engine vs LLM Comparison</h3>
+          </div>
+          <table class="ref-table">
+            <thead>
+              <tr><th>Dimension</th><th>X185Plus Forge (AST/Pattern)</th><th>Probabilistic LLM (Copilot/Devin)</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Reproducibility</strong></td>
+                <td><span class="badge badge-success">100% Deterministic</span></td>
+                <td>Non-deterministic (Temperature &gt; 0)</td>
+              </tr>
+              <tr>
+                <td><strong>Token Cost</strong></td>
+                <td><span class="badge badge-success">0 AI Tokens</span></td>
+                <td>1,000–8,000 tokens per patch</td>
+              </tr>
+              <tr>
+                <td><strong>Verification</strong></td>
+                <td>Proven pre/post condition compiler check</td>
+                <td>Unverified probabilistic guess</td>
+              </tr>
+              <tr>
+                <td><strong>CI Quality Gate</strong></td>
+                <td>Instant local &amp; CI execution (&lt;1s)</td>
+                <td>Slow external API calls (10–30s)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: GOVERNANCE & CI GATE -->
+    <section class="tab-pane" id="pane-governance">
+      <div class="governance-header">
+        <h2 class="section-title">Deterministic Quality Gate for CI</h2>
+        <p class="section-desc">
+          Every rule contribution in X185Plus Forge is validated by a 3-tier gate in GitHub Actions with zero secrets required.
+        </p>
+      </div>
+
+      <!-- Live Terminal Output Preview -->
+      <div class="terminal-card">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="terminal-title">npm test — Local &amp; CI Execution Log</span>
+          <button class="btn btn-ghost btn-xs btn-copy" data-copy="npm test" title="Copy command">Copy</button>
+        </div>
+        <pre class="terminal-body"><code>🔍 X185Plus Forge — Validating Public Community Rule Index...
+📁 Found 15 community repair rule(s) in /rules
+  ✓ Rule validated: eol-last (pilot)
+  ✓ Rule validated: linebreak-style (pilot)
+  ✓ Rule validated: no-irregular-whitespace (pilot)
+  ✓ Rule validated: no-multiple-empty-lines (pilot)
+  ✓ Rule validated: no-trailing-spaces (pilot)
+  ✓ Rule validated: unicode-bom (pilot)
+  ✓ Rule validated: eqeqeq (pilot)
+  ✓ Rule validated: no-debugger (pilot)
+  ✓ Rule validated: no-var (pilot)
+  ✓ Rule validated: prefer-const (pilot)
+  ✓ Rule validated: security/eval (pilot)
+  ✓ Rule validated: security/hardcoded-secret (pilot)
+  ✓ Rule validated: security/new-function (pilot)
+  ✓ Rule validated: security/xss-sink (pilot)
+  ✓ Rule validated: unused-import (pilot)
+📋 index.json lists 15 rule entries
+✅ ALL FORGE COMMUNITY RULES VALIDATED SUCCESSFULLY (100% Deterministic &amp; Safe).
+
+🧪 X185Plus Forge — Running Deterministic Rule &amp; Autofix Test Suite...
+  ✓ eol-last                     | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ linebreak-style              | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ no-irregular-whitespace      | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ no-multiple-empty-lines      | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ no-trailing-spaces           | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ unicode-bom                  | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ eqeqeq                       | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ no-debugger                  | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ no-var                       | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ prefer-const                 | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ security/eval                | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ security/hardcoded-secret    | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ security/new-function        | 1/1 match(es) | 1/1 guard(s) · fix verified
+  ✓ security/xss-sink            | 1/1 match(es) | 1/1 guard(s)
+  ✓ unused-import                | 1/1 match(es) | 1/1 guard(s) · fix verified
+
+====================================================================
+Summary: 15 rules tested · 44/44 tests pass deterministically.
+Deterministic quality gate for CI pipeline: 100% PASSED
+====================================================================
+
+✅ ALL COMMUNITY REPAIR RULES &amp; FIXES PASSED DETERMINISTIC QUALITY GATE.</code></pre>
+      </div>
+
+      <!-- CI Workflow Definition -->
+      <div class="ci-workflow-card">
+        <div class="ci-workflow-header">
+          <h3>GitHub Actions Workflow: <code>.github/workflows/ci.yml</code></h3>
+          <span class="badge badge-accent">SHA-Pinned · Zero Secrets</span>
+        </div>
+        <pre class="code-block"><code>name: Forge Public Rule CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-community-rules:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Public Repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '22.x'
+
+      - name: Validate Community Rules &amp; Run Deterministic Test Gate
+        run: npm test</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sliding Inspector Drawer (Right) -->
+  <aside class="inspector-drawer" id="inspector-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-title-wrapper">
+        <span class="badge badge-lg" id="drawer-severity-badge">CRITICAL</span>
+        <h2 class="drawer-rule-id" id="drawer-rule-id">security/eval</h2>
+      </div>
+      <button class="drawer-close-btn" id="btn-close-drawer" title="Close inspector (Esc)">✕</button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Description -->
+      <div class="drawer-section">
+        <h4 class="drawer-section-title">Description</h4>
+        <p class="drawer-desc" id="drawer-desc"></p>
+      </div>
+
+      <!-- Approach -->
+      <div class="drawer-section">
+        <h4 class="drawer-section-title">Deterministic Approach</h4>
+        <p class="drawer-approach" id="drawer-approach"></p>
+      </div>
+
+      <!-- Pattern & Fix -->
+      <div class="drawer-section">
+        <div class="section-title-with-copy">
+          <h4 class="drawer-section-title">Pattern &amp; Rewrite Expression</h4>
+          <button class="btn btn-ghost btn-xs btn-copy" id="btn-copy-pattern">Copy Pattern</button>
+        </div>
+        <div class="code-block-wrapper">
+          <div class="code-label">Pattern (PCRE2):</div>
+          <pre class="code-block"><code id="drawer-pattern-code"></code></pre>
+        </div>
+        <div class="code-block-wrapper" id="drawer-fix-wrapper">
+          <div class="code-label">Fix Expression:</div>
+          <pre class="code-block"><code id="drawer-fix-code"></code></pre>
+        </div>
+        <div class="code-block-wrapper" id="drawer-handler-wrapper" style="display: none;">
+          <div class="code-label">AST Handler:</div>
+          <pre class="code-block"><code id="drawer-handler-code"></code></pre>
+        </div>
+      </div>
+
+      <!-- Test Fixture Preview with ruleid highlights -->
+      <div class="drawer-section">
+        <h4 class="drawer-section-title">Semgrep-Style Test Fixture</h4>
+        <div class="fixture-preview" id="drawer-fixture-preview">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+
+      <!-- Governance & Standards -->
+      <div class="drawer-section">
+        <h4 class="drawer-section-title">Governance &amp; Metadata</h4>
+        <dl class="meta-grid">
+          <dt>CWE Mapping</dt>
+          <dd id="drawer-meta-cwe">-</dd>
+          <dt>Pillar</dt>
+          <dd id="drawer-meta-pillar">-</dd>
+          <dt>Perf Class</dt>
+          <dd id="drawer-meta-perf">-</dd>
+          <dt>Confidence</dt>
+          <dd id="drawer-meta-confidence">-</dd>
+          <dt>Limitations</dt>
+          <dd id="drawer-meta-limitations">-</dd>
+          <dt>Aliases</dt>
+          <dd id="drawer-meta-aliases">-</dd>
+        </dl>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Drawer Overlay Backdrop -->
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <!-- Data and Application Script -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

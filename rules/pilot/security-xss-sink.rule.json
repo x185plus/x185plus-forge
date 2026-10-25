@@ -6,5 +6,16 @@
   "confidence": "pilot",
   "pattern": "\\s*dangerouslySetInnerHTML\\s*=\\s*\\{\\{[\\s\\S]*?\\}\\}",
   "fix": "",
-  "aliases": ["security/react-xss", "react-xss", "react/dangerously-set-inner-html", "xss-sink"]
+  "aliases": [
+    "security/react-xss",
+    "react-xss",
+    "react/dangerously-set-inner-html",
+    "xss-sink"
+  ],
+  "description": "Detect dangerous innerHTML injection sinks like dangerouslySetInnerHTML to prevent cross-site scripting (XSS).",
+  "tags": [
+    "security",
+    "xss",
+    "cwe-79"
+  ]
 }

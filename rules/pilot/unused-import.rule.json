@@ -6,5 +6,18 @@
   "pattern": "",
   "fix": "",
   "handler": "unused-import-line",
-  "aliases": ["no-unused-vars", "no-unused-imports", "@typescript-eslint/no-unused-vars", "imports/unused", "unused_import", "quality/unused-import"]
+  "aliases": [
+    "no-unused-vars",
+    "no-unused-imports",
+    "@typescript-eslint/no-unused-vars",
+    "imports/unused",
+    "unused_import",
+    "quality/unused-import"
+  ],
+  "description": "Detect and remove unused imported symbols and lines to keep bundles lean and reduce dead code.",
+  "tags": [
+    "cleanup",
+    "imports",
+    "bundle-size"
+  ]
 }

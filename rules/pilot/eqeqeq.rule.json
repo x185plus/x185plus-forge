@@ -6,5 +6,14 @@
   "confidence": "pilot",
   "pattern": "([^=!<>])==([^=])",
   "fix": "$1===$2",
-  "aliases": ["quality/eqeqeq", "no-eq-null"]
+  "aliases": [
+    "quality/eqeqeq",
+    "no-eq-null"
+  ],
+  "description": "Require strict equality operators (=== and !==) to prevent unexpected type coercion.",
+  "tags": [
+    "quality",
+    "type-safety",
+    "equality"
+  ]
 }
